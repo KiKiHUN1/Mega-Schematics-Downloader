@@ -256,7 +256,7 @@ namespace schema
 
         private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://www.buymeacoffee.com/KiKiHUN1") { UseShellExecute = true });
+           MessageBox.Show("A good coffee is always good");
         }
     }
 }
