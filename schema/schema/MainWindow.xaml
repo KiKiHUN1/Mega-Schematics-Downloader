@@ -1,0 +1,30 @@
+﻿<Window x:Name="mainwindow" x:Class="schema.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:schema"
+        mc:Ignorable="d"
+         Title="Repair Database by KiKiHUN and the Community" Height="450" Width="800" Background="#FF687782" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/64 x 63 - BMP (32-bit) (1).png">
+    <Grid x:Name="listbox">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="341*"/>
+            <ColumnDefinition Width="318*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listbox1" Margin="7,50,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="#FF6E92AD" HorizontalAlignment="Left" Width="783" Grid.ColumnSpan="3" Padding="0,5,0,5"/>
+        <Button x:Name="BTN_back" Content="Back" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Height="25" Width="49" Click="Button_Click_1" Background="#FF4FC72F"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" Height="25" Width="49" Click="Button_Click" Background="#FF2F6ED4"/>
+        <Rectangle HorizontalAlignment="Left" Height="27" Margin="27,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="248" Grid.Column="2"/>
+        <Label Content="Status: " HorizontalAlignment="Left" Margin="27,9,0,0" VerticalAlignment="Top" Height="26" Width="54" Foreground="Black" Grid.Column="2"/>
+        <Label x:Name="LB_status" Content="Ready" HorizontalAlignment="Left" Margin="76,6,0,0" VerticalAlignment="Top" Width="199" Background="{x:Null}" Foreground="#FF79FF7C" FontSize="14" Grid.Column="2"/>
+        <Button Content="Downloaded files" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Height="25" Width="106" Click="Button_Click3" Background="#FFD06F52" Grid.Column="1"/>
+        <Label Content="Collection and app by KiKiHUN" HorizontalAlignment="Left" Margin="148,7,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF1700BF" FontSize="14" RenderTransformOrigin="0.505,0.526" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button Content="Upload" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Height="25" Width="61" Click="Button_Click2" Background="#FFC94DD0" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="2" Content="!?" HorizontalAlignment="Left" Height="27" Margin="288,8,0,0" VerticalAlignment="Top" Width="20" Background="#FFFDFF00" Click="Button_Click_4"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="13,13,0,0" VerticalAlignment="Top" Width="14" Source="/buy-me-a-coffee-logo-F1878A1EB2-seeklogo.com.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+
+
+
+    </Grid>
+</Window>

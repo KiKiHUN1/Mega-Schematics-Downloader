@@ -1,0 +1,2 @@
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\publish\win-x64\KiKiHUN Software.pdb
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\publish\win-x64\KiKiHUN Software.exe

@@ -1,0 +1,25 @@
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\KiKiHUN software.exe
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\KiKiHUN software.deps.json
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\KiKiHUN software.runtimeconfig.json
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\KiKiHUN software.dll
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\KiKiHUN software.pdb
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\MegaApiClient.dll
+H:\suli\prog\c#\schema\schema\bin\Release\net6.0-windows\win-x64\Newtonsoft.Json.dll
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.csproj.AssemblyReference.cache
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\MainWindow.g.cs
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\App.g.cs
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\KiKiHUN software_Content.g.cs
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\KiKiHUN software_MarkupCompile.cache
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\KiKiHUN software_MarkupCompile.lref
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\MainWindow.baml
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\KiKiHUN software.g.resources
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.GeneratedMSBuildEditorConfig.editorconfig
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.AssemblyInfoInputs.cache
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.AssemblyInfo.cs
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.csproj.CoreCompileInputs.cache
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.csproj.CopyComplete
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\KiKiHUN software.dll
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\refint\KiKiHUN software.dll
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\KiKiHUN software.pdb
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\schema.genruntimeconfig.cache
+H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\win-x64\ref\KiKiHUN software.dll

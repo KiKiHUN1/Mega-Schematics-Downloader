@@ -1,0 +1,7 @@
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\KiKiHUN software.exe
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\KiKiHUN software.dll
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\KiKiHUN software.deps.json
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\KiKiHUN software.runtimeconfig.json
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\KiKiHUN software.pdb
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\MegaApiClient.dll
+H:\suli\prog\c#\schema\schema\bin\Debug\net6.0-windows\publish\Newtonsoft.Json.dll
