@@ -6,4 +6,4 @@ This app will check if i updated the mega link or not on my little server(will m
 Anyways, check out the [release](https://github.com/KiKiHUN1/Mega-Schematics-Downloader/releases/tag/Working) if you wan't to use it.
 
 
-tldr.: you can edit the mega link and use this code to download files inside folder trees.
+btw.: you can edit the mega link and use this code to download files inside folder trees.
