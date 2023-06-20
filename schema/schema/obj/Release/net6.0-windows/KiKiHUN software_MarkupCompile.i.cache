@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\
 schema
 none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
-H:\suli\prog\c#\schema\schema\App.xaml
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\App.xaml
 11407045341
 1-913308027
 6-993842108
 196181428199
 MainWindow.xaml;
 
-True
+False
 

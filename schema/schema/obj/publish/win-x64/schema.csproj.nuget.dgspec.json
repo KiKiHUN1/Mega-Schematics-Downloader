@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\suli\\prog\\c#\\schema\\schema\\schema.csproj": {}
+    "H:\\suli\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\schema.csproj": {}
   },
   "projects": {
-    "H:\\suli\\prog\\c#\\schema\\schema\\schema.csproj": {
+    "H:\\suli\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\schema.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\suli\\prog\\c#\\schema\\schema\\schema.csproj",
+        "projectUniqueName": "H:\\suli\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\schema.csproj",
         "projectName": "KiKiHUN Software",
-        "projectPath": "H:\\suli\\prog\\c#\\schema\\schema\\schema.csproj",
+        "projectPath": "H:\\suli\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\schema.csproj",
         "packagesPath": "C:\\Users\\KiKiPC\\.nuget\\packages\\",
-        "outputPath": "H:\\suli\\prog\\c#\\schema\\schema\\obj\\publish\\win-x64\\",
+        "outputPath": "H:\\suli\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\obj\\publish\\win-x64\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

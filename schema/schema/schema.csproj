@@ -25,7 +25,6 @@
   <ItemGroup>
     <None Remove="25231.png" />
     <None Remove="64 x 63 - BMP %2832-bit%29 %281%29.png" />
-    <None Remove="buy-me-a-coffee-logo-F1878A1EB2-seeklogo.com.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,7 +38,6 @@
   <ItemGroup>
     <Resource Include="25231.png" />
     <Resource Include="64 x 63 - BMP (32-bit) (1).png" />
-    <Resource Include="buy-me-a-coffee-logo-F1878A1EB2-seeklogo.com.png" />
   </ItemGroup>
 
 </Project>

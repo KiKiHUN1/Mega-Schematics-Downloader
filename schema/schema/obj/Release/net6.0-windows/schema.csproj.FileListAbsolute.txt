@@ -23,3 +23,28 @@ H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software.dll
 H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\refint\KiKiHUN Software.dll
 H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software.pdb
 H:\suli\prog\c#\schema\schema\obj\Release\net6.0-windows\ref\KiKiHUN Software.dll
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\KiKiHUN Software.exe
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\KiKiHUN Software.deps.json
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\KiKiHUN Software.runtimeconfig.json
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\KiKiHUN Software.dll
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\KiKiHUN Software.pdb
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\MegaApiClient.dll
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\Newtonsoft.Json.dll
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.csproj.AssemblyReference.cache
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\MainWindow.g.cs
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\App.g.cs
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software_Content.g.cs
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software_MarkupCompile.cache
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software_MarkupCompile.lref
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\MainWindow.baml
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software.g.resources
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.GeneratedMSBuildEditorConfig.editorconfig
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.AssemblyInfoInputs.cache
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.AssemblyInfo.cs
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.csproj.CoreCompileInputs.cache
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.csproj.CopyComplete
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software.dll
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\refint\KiKiHUN Software.dll
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\KiKiHUN Software.pdb
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\schema.genruntimeconfig.cache
+H:\suli\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Release\net6.0-windows\ref\KiKiHUN Software.dll
