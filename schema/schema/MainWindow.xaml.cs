@@ -251,12 +251,12 @@ namespace schema
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("If you found a bug please report on discord \n ID: kikihun");
+            MessageBox.Show("If you found a bug please report on github \n https://github.com/KiKiHUN1/Mega-Schematics-Downloader/issues/new/choose");
         }
 
         private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://www.buymeacoffee.com/KiKiHUN1") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://github.com/KiKiHUN1/Mega-Schematics-Downloader") { UseShellExecute = true });
         }
     }
 }

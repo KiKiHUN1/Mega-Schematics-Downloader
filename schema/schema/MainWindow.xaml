@@ -22,7 +22,7 @@
         <Label Content="Collection and app by KiKiHUN" HorizontalAlignment="Left" Margin="148,7,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF1700BF" FontSize="14" RenderTransformOrigin="0.505,0.526" Grid.ColumnSpan="2" Grid.Column="1"/>
         <Button Content="Upload" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Height="25" Width="61" Click="Button_Click2" Background="#FFC94DD0" Grid.ColumnSpan="2"/>
         <Button Grid.Column="2" Content="!?" HorizontalAlignment="Left" Height="27" Margin="288,8,0,0" VerticalAlignment="Top" Width="20" Background="#FFFDFF00" Click="Button_Click_4"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="13,13,0,0" VerticalAlignment="Top" Width="14" Source="/buy-me-a-coffee-logo-F1878A1EB2-seeklogo.com.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="13,13,0,0" VerticalAlignment="Top" Width="14" Source="/25231.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
 
 
 
