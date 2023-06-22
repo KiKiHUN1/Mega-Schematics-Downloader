@@ -21,13 +21,18 @@ namespace schema
         double version= 1.0;
         MegaApiClient client = new MegaApiClient();
         datas database = null;
-        string parentID = "";
         INode currentNode = null;
+
         public MainWindow()
         {
             InitializeComponent();
             checkversionAsync();
-           
+            CV_search.Visibility = Visibility.Hidden;
+            BTN_back.IsEnabled = false;
+            BTN_refresh.IsEnabled = false;
+            BTN_home.IsEnabled = false;
+            BTN_Search_clear.Visibility = Visibility.Hidden;
+            BTN_search.Visibility = Visibility.Hidden;
         }
         async Task checkversionAsync()
         {
@@ -43,13 +48,21 @@ namespace schema
                     Application.Current.Shutdown();
                 }
             }
+            try
+            {
+                client.LoginAnonymous();
+                LB_status.Content = "Click refresh to begin";
+                BTN_refresh.IsEnabled = true;
+            }
+            catch (ApiException)
+            {
+                LB_status.Content = "api error";
+            }
            
-            client.LoginAnonymous();
-            BTN_back.IsEnabled = false;
-            LB_status.Content = "Click refresh to begin";
         }
         void loadlink()
         {
+            BTN_home.IsEnabled = false;
             Uri folderLink = new Uri("https://mega.nz/folder/EWFAzKIT#uUGjAxvc8TlpnQVLUHl5wg");
             LB_status.Content = "Fetching data...";
             IEnumerable<INode> nodes = null;
@@ -73,7 +86,6 @@ namespace schema
             database = null;
             GC.Collect();
             database = new datas(nodes);
-            parentID = database.getRoot().Id;
             currentNode = database.getRoot();
             Main();
         }
@@ -115,7 +127,7 @@ namespace schema
             button.Background = brush;
             button.FontSize = 12;
             button.Width = listbox1.Width / 4.0 - 30.0;
-            button.Click += (sender, EventArgs) => { myButton_Click(sender, EventArgs, item); };
+            button.Click += (sender, EventArgs) => { Download_click(sender, EventArgs, item); };
             Grid.SetColumn(text, 0);
             Grid.SetRow(text, 0);
             grid.Children.Add(text);
@@ -129,17 +141,17 @@ namespace schema
 
 
 
-        void Main()
+        void Main(bool filtered=false)
         {
+            CV_search.Visibility = Visibility.Hidden;
             LB_status.Content = "Filling up the list";
             if (!database.IsNulll())
             {
 
                 listbox1.Items.Clear();
-
-                foreach (INode node in database.getnodes())
+                foreach (INode node in database.getnodes(filtered))
                 {
-                    if (node.ParentId == parentID)
+                    if (filtered||node.ParentId == currentNode.Id)
                     {
                         listAdd(node.Name, node);
                     }
@@ -149,30 +161,38 @@ namespace schema
                      Console.WriteLine($"Downloading {parents}\\{node.Name}");
                      client.DownloadFile(node, System.IO.Path.Combine(parents, node.Name));*/
                 }
-                if (currentNode.Type == NodeType.Root)
+                if (!filtered)
                 {
-                    BTN_back.IsEnabled = false;
+                    if (currentNode.Type == NodeType.Root)
+                    {
+                        BTN_back.IsEnabled = false;
+                    }
+                    else
+                    {
+                        BTN_back.IsEnabled = true;
+                        BTN_home.IsEnabled = true;
+                    }
                 }
-                else
-                {
-                    BTN_back.IsEnabled = true;
-                }
+               
                 // client.Logout();
                 LB_status.Content = "Ready";
+                CV_search.Visibility= Visibility.Visible;
+                
             }
             else
             {
+                CV_search.Visibility = Visibility.Hidden;
+                BTN_home.IsEnabled = false;
                 LB_status.Content = "Local database is empty";
             }
 
         }
 
-        void myButton_Click(object sender, RoutedEventArgs e, INode item)
+        void Download_click(object sender, RoutedEventArgs e, INode item)
         {
             currentNode = item;
             if (item.Type == NodeType.Directory)
             {
-                parentID = item.Id;
                 Main();
             }
             else
@@ -213,21 +233,20 @@ namespace schema
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Refresh_click(object sender, RoutedEventArgs e)
         {
             LB_status.Content = "Reloading local storage...";
             loadlink();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Back_click(object sender, RoutedEventArgs e)
         {
             LB_status.Content = "Back one folder";
-            parentID = database.getParentParent(currentNode).Id;
             currentNode = database.getParentParent(currentNode);
             Main();
         }
 
-        private void Button_Click3(object sender, RoutedEventArgs e)
+        private void Open_downloaded_click(object sender, RoutedEventArgs e)
         {
             string path = Directory.GetCurrentDirectory();
             path += "\\schema+boarview";
@@ -244,19 +263,65 @@ namespace schema
 
         }
 
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        private void Upload_click(object sender, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo("https://mega.nz/filerequest/QK_jfHIDbGk") { UseShellExecute = true });
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Info_click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("If you found a bug please report on github \n https://github.com/KiKiHUN1/Mega-Schematics-Downloader/issues/new/choose");
         }
 
-        private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Github_click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Process.Start(new ProcessStartInfo("https://github.com/KiKiHUN1/Mega-Schematics-Downloader") { UseShellExecute = true });
+        }
+
+        private void Home_click(object sender, RoutedEventArgs e)
+        {
+            currentNode=database.getRoot();
+            Main();
+        }
+
+        private void Search_clear_click(object sender, RoutedEventArgs e)
+        {
+            LB_status.Content = "Reloading local storage...";
+            TB_search.Clear();
+            BTN_refresh.IsEnabled = true;
+            Main();
+        }
+
+        private void BTN_search_Click(object sender, RoutedEventArgs e)
+        {
+            BTN_refresh.IsEnabled= false;
+            BTN_back.IsEnabled=false;
+            BTN_home.IsEnabled=false;
+            int count=database.SearchFor(TB_search.Text);
+            if (count > 0)
+            {
+                LB_status.Content = count + " items found";
+                Main(true);
+            }
+            else
+            {
+                LB_status.Content = "no items found";
+                listbox1.Items.Clear();
+            }
+        }
+
+        private void TB_search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TB_search.Text!="")
+            {
+                BTN_Search_clear.Visibility = Visibility.Visible;
+                BTN_search.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BTN_Search_clear.Visibility = Visibility.Hidden;
+                BTN_search.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

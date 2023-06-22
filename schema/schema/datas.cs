@@ -10,6 +10,7 @@ namespace schema
     internal class datas
     {
         private IEnumerable<INode> nodes;
+        private IEnumerable<INode> Searchednodes;
         public bool IsNulll()
         {
             if (nodes == null)
@@ -29,15 +30,22 @@ namespace schema
         {
             return nodes.Single(x => x.Type == NodeType.Root);
         }
-        public IEnumerable<INode> getnodes()
+        public IEnumerable<INode> getnodes(bool filtered=false)
         {
-            return nodes;
+            if (!filtered)
+            {
+                return nodes;
+            }
+            else
+            {
+                return Searchednodes;
+            }
+            
         }
+       
 
         public INode getParentParent(INode node)//back one folder
         {
-
-
             INode parent = nodes.Single(x => x.Id == node.ParentId);
             return parent;
         }
@@ -52,6 +60,11 @@ namespace schema
             }
 
             return string.Join("\\", parents);
+        }
+        public int SearchFor(string keyword)
+        {
+            Searchednodes = nodes.Where(x => x.Type==NodeType.File).Where(x=>x.Name.ToLower().Contains(keyword.ToLower()));
+            return Searchednodes.Count();
         }
     }
 }
