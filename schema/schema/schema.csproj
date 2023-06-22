@@ -12,6 +12,7 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Authors>KiKiHUN</Authors>
     <Product>$(AssemblyName)</Product>
+    <Version>1.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

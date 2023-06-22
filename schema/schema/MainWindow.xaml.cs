@@ -18,7 +18,7 @@ namespace schema
     /// </summary>
     public partial class MainWindow : Window
     {
-        double version= 1.0;
+        double version= 1.2;
         MegaApiClient client = new MegaApiClient();
         datas database = null;
         INode currentNode = null;
