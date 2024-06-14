@@ -1,11 +1,13 @@
-﻿using CG.Web.MegaApiClient;
+using CG.Web.MegaApiClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Security.Policy;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,7 +20,7 @@ namespace schema
     /// </summary>
     public partial class MainWindow : Window
     {
-        double version= 1.2;
+        double version= 1.3;
         MegaApiClient client = new MegaApiClient();
         datas database = null;
         INode currentNode = null;
@@ -27,6 +29,7 @@ namespace schema
         {
             InitializeComponent();
             checkversionAsync();
+            
             CV_search.Visibility = Visibility.Hidden;
             BTN_back.IsEnabled = false;
             BTN_refresh.IsEnabled = false;
@@ -38,15 +41,23 @@ namespace schema
         {
             using (HttpClient client = new HttpClient())
             {
-                string server_version = await client.GetStringAsync("https://kgaming.ddns.net/schematics_update/version.txt");
-                server_version=server_version.Substring(0, server_version.Length - 1);
-                    double server_version2 = double.Parse(server_version, CultureInfo.InvariantCulture);
-                if (server_version2 > version)
+                try
                 {
-                    MessageBox.Show("New version available. Press ok to download it");
-                    Process.Start(new ProcessStartInfo("https://kgaming.ddns.net/schematics_update/KiKiHUN_software.exe") { UseShellExecute = true });
-                    Application.Current.Shutdown();
+                    string server_version = await client.GetStringAsync("https://raw.githubusercontent.com/KiKiHUN1/Mega-Schematics-Downloader/main/schema/schema/ver.txt");
+                    server_version = server_version.Substring(0, server_version.Length - 1);
+                    double server_version2 = double.Parse(server_version, CultureInfo.InvariantCulture);
+                    if (server_version2 > version)
+                    {
+                        MessageBox.Show("New version available. Press ok to visit on github");
+                        Process.Start(new ProcessStartInfo("https://github.com/KiKiHUN1/Mega-Schematics-Downloader/releases/tag/newest") { UseShellExecute = true });
+                        Application.Current.Shutdown();
+                    }
                 }
+                catch (HttpRequestException)
+                {
+                    MessageBox.Show("Cannot connect to github. Maybe your internet or github is down?");
+                }
+               
             }
             try
             {
@@ -54,11 +65,12 @@ namespace schema
                 LB_status.Content = "Click refresh to begin";
                 BTN_refresh.IsEnabled = true;
             }
-            catch (ApiException)
+            catch (Exception)
             {
-                LB_status.Content = "api error";
+                MessageBox.Show("Mega connection error. Failed to connect to MEGA cloud. Application closes.");
+                Application.Current.Shutdown();
             }
-           
+
         }
         void loadlink()
         {
@@ -89,6 +101,14 @@ namespace schema
             currentNode = database.getRoot();
             Main();
         }
+        bool isFileDownloaded(string path)
+        {
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+            return true;
+        }
 
         void listAdd(string name, INode item = null)
         {
@@ -117,17 +137,31 @@ namespace schema
             {
                 button.Content = "Enter";
                 myColor = System.Drawing.ColorTranslator.FromHtml("#FF4088FB");
+                SubSCribeToEvent(2, button, item,null);
             }
             else
             {
-                button.Content = "Download";
-                myColor = System.Drawing.ColorTranslator.FromHtml("#FF4FC72F");
+                string parents = database.GetParents(item);
+                if (isFileDownloaded(System.IO.Path.Combine(parents, item.Name)))
+                {
+                    button.Content = "Show";
+                    myColor = System.Drawing.ColorTranslator.FromHtml("#A82743");
+                    SubSCribeToEvent(0, button,null,parents );
+                }
+                else
+                {
+                    button.Content = "Download";
+                    myColor = System.Drawing.ColorTranslator.FromHtml("#FF4FC72F");
+                    SubSCribeToEvent(1,button,item,null);
+                }
+
+              
             }
             SolidColorBrush brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(myColor.A, myColor.R, myColor.G, myColor.B));
             button.Background = brush;
             button.FontSize = 12;
             button.Width = listbox1.Width / 4.0 - 30.0;
-            button.Click += (sender, EventArgs) => { Download_click(sender, EventArgs, item); };
+           
             Grid.SetColumn(text, 0);
             Grid.SetRow(text, 0);
             grid.Children.Add(text);
@@ -187,26 +221,29 @@ namespace schema
             }
 
         }
-
-        void Download_click(object sender, RoutedEventArgs e, INode item)
+        void Show_click(object sender, RoutedEventArgs e, string parents)
         {
-            currentNode = item;
-            if (item.Type == NodeType.Directory)
-            {
-                Main();
-            }
-            else
-            {
+            string path = Directory.GetCurrentDirectory();
+            path += "\\" + parents;
+            Process.Start("explorer.exe", @path);
+        }
+        void Download_click(object sender, RoutedEventArgs e, INode item, Button button)
+        {
+            if (item.Type != NodeType.Directory)
+            { 
                 string parents = database.GetParents(item);
                 Directory.CreateDirectory(parents);
-                LB_status.Content = "Downloading: " + item.Name;
+              
 
-                if (!File.Exists(System.IO.Path.Combine(parents, item.Name)))
+                if (!isFileDownloaded(System.IO.Path.Combine(parents, item.Name)))
                 {
+                    LB_status.Content = "Downloading: " + item.Name;
                     try
                     {
                         client.DownloadFile(item, System.IO.Path.Combine(parents, item.Name));
                         LB_status.Content = "Downloaded";
+                        
+                       
                     }
                     catch (ApiException)
                     {
@@ -221,17 +258,55 @@ namespace schema
                         MessageBox.Show("Unknown error: " + ex.ToString());
                     }
                 }
-                else
-                {
-                    LB_status.Content = "Already downloaded";
-                }
-                string path = Directory.GetCurrentDirectory();
-                path += "\\" + parents;
-                Process.Start("explorer.exe", @path);
-
-
+                //string path = Directory.GetCurrentDirectory();
+                //path += "\\" + parents;
+                //Process.Start("explorer.exe", @path);
+            }
+            Main();
+        }
+        void Enter_click(object sender, RoutedEventArgs e, INode item)
+        {
+            currentNode = item;
+            if (item.Type == NodeType.Directory)
+            {
+                Main();
             }
         }
+
+
+        void SubSCribeToEvent(byte status, Button button, INode item=null, string parents=null)
+        {
+            switch (status)
+            {
+                case 0:
+                     button.Click += (sender, EventArgs) => { Show_click(sender, EventArgs, parents); };
+                    break;
+                case 1:
+                    button.Click += (sender, EventArgs) => { Download_click(sender, EventArgs,item,button); };
+                    break;
+                case 2:
+                    button.Click += (sender, EventArgs) => { Enter_click(sender, EventArgs, item); };
+                    break;
+            }
+        }
+
+        void DeSubScribeFromEvent(byte status, Button button, INode item, string parents = null)
+        {
+            switch (status)
+            {
+                case 0:
+                    button.Click -= (sender, EventArgs) => { Show_click(sender, EventArgs, parents); };
+                    break;
+                case 1:
+                    button.Click -= (sender, EventArgs) => { Download_click(sender, EventArgs, item, button); };
+                    break;
+                case 2:
+                    button.Click -= (sender, EventArgs) => { Enter_click(sender, EventArgs, item); };
+                    break;
+            }
+        }
+
+
 
         private void Refresh_click(object sender, RoutedEventArgs e)
         {
