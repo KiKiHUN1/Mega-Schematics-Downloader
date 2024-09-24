@@ -20,7 +20,7 @@ namespace schema
     /// </summary>
     public partial class MainWindow : Window
     {
-        double version= 1.3;
+        double version= 1.4;
         MegaApiClient client = new MegaApiClient();
         datas database = null;
         INode currentNode = null;
@@ -340,7 +340,7 @@ namespace schema
 
         private void Upload_click(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://mega.nz/filerequest/QK_jfHIDbGk") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://mega.nz/filerequest/lLMk9FqdQ_E") { UseShellExecute = true });
         }
 
         private void Info_click(object sender, RoutedEventArgs e)
