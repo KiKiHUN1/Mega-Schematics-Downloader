@@ -340,7 +340,7 @@ namespace schema
 
         private void Upload_click(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://mega.nz/filerequest/QK_jfHIDbGk") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://mega.nz/filerequest/lLMk9FqdQ_E") { UseShellExecute = true });
         }
 
         private void Info_click(object sender, RoutedEventArgs e)
