@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LK9eC6al6fhdXKEmScEPi0twi2Lh0YHRPhxtd1xwr9KCylY1BWYo8qCilAhz9FIuNwno/GeDFd+ZFjMzkahLZA==",
+  "dgSpecHash": "at2bxyL/B5CTTcQReKJU8T7uLKHfi1MZobR20svEOZ9MvCT65Nnsmnu8XiXf4UlUzFUDUYAaU4FB/LbhA5a+Dw==",
   "success": true,
-  "projectFilePath": "I:\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\schema.csproj",
+  "projectFilePath": "H:\\prog\\c#\\Mega-Schematics-Downloader\\schema\\schema\\schema.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\KiKi\\.nuget\\packages\\megaapiclient\\1.10.3\\megaapiclient.1.10.3.nupkg.sha512",
     "C:\\Users\\KiKi\\.nuget\\packages\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",

@@ -124,3 +124,29 @@ I:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\ref
 I:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software.pdb
 I:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.genruntimeconfig.cache
 I:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\ref\KiKiHUN Software.dll
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\KiKiHUN Software.exe
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\KiKiHUN Software.deps.json
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\KiKiHUN Software.runtimeconfig.json
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\KiKiHUN Software.dll
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\KiKiHUN Software.pdb
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\MegaApiClient.dll
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.csproj.AssemblyReference.cache
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\MainWindow.g.cs
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\App.g.cs
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software_Content.g.cs
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software_MarkupCompile.cache
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software_MarkupCompile.lref
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\MainWindow.baml
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software.g.resources
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.GeneratedMSBuildEditorConfig.editorconfig
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.AssemblyInfoInputs.cache
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.AssemblyInfo.cs
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.csproj.CoreCompileInputs.cache
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.sourcelink.json
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.csproj.Up2Date
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software.dll
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\refint\KiKiHUN Software.dll
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\KiKiHUN Software.pdb
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\schema.genruntimeconfig.cache
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\obj\Debug\net6.0-windows\ref\KiKiHUN Software.dll

@@ -1,0 +1,2 @@
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\win-x64\app.publish\KiKiHUN Software.pdb
+H:\prog\c#\Mega-Schematics-Downloader\schema\schema\bin\Release\net6.0-windows\win-x64\app.publish\KiKiHUN Software.exe
