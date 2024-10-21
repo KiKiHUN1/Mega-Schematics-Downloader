@@ -4,7 +4,7 @@ This is a simple Mega.nz downloader for my collected schematics and boarviews fo
 This app will check if i updated the mega link or the app itself (Migrated to github but older version will still check on my server). <br>
 Feel free to check the source code.
 
-Anyways, check out the [release](https://github.com/KiKiHUN1/Mega-Schematics-Downloader/releases) page if you wan't to use it.
+Anyways, check out the [release](https://github.com/KiKiHUN1/Mega-Schematics-Downloader/releases) page if you want to use it.
 
 
 btw.: you can edit the mega link and use this code to download files inside folder trees.
