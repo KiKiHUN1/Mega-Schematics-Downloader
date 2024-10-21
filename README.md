@@ -12,3 +12,12 @@ The app window:
 ![image](https://github.com/KiKiHUN1/Mega-Schematics-Downloader/assets/71247943/e5c154af-fb14-4643-82b6-e59b6fd00424)
 
 
+## If you like my work, please hit that star icon, thx :)
+
+<a href="https://star-history.com/#KiKiHUN1/Mega-Schematics-Downloader&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=KiKiHUN1/Mega-Schematics-Downloader&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=KiKiHUN1/Mega-Schematics-Downloader&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=KiKiHUN1/Mega-Schematics-Downloader&type=Date" />
+ </picture>
+</a>
