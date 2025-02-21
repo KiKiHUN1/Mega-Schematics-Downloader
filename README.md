@@ -1,6 +1,9 @@
 # Mega-Schematics-Downloader
 This is a simple Mega.nz downloader for my collected schematics and boarviews for laptops, gpu's, motherboards.
 
+<h1 color="red">Mega blocked the current version of api access, i have to rework this app! Sorry.</h1>
+<h2>Ps.: check the maimwindow.cs code for the mega link</h2>
+
 This app will check if i updated the mega link or the app itself (Migrated to github but older version will still check on my server). <br>
 Feel free to check the source code.
 
