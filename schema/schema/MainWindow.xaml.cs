@@ -2,12 +2,9 @@ using CG.Web.MegaApiClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
-using System.Security.Policy;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +17,7 @@ namespace schema
     /// </summary>
     public partial class MainWindow : Window
     {
-        double version= 1.4;
+        double version= 1.5;
         MegaApiClient client = new MegaApiClient();
         datas database = null;
         INode currentNode = null;

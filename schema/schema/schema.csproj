@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>schema.App</StartupObject>
-    <AssemblyName>KiKiHUN Software</AssemblyName>
+    <AssemblyName>KiKiHUN_Software</AssemblyName>
     <IsPublishable>True</IsPublishable>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <PackageId>$(AssemblyName)</PackageId>
     <Authors>KiKiHUN</Authors>
     <Product>$(AssemblyName)</Product>
-    <Version>1.4</Version>
+    <Version>1.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,7 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MegaApiClient" Version="1.10.3" />
+    <PackageReference Include="MegaApiClient" Version="1.10.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>

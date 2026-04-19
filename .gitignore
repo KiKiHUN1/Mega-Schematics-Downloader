@@ -6,3 +6,7 @@ schema/.vs/schema/v17/.suo
 schema/schema/bin
 MEGA-RECOVERYKEY.txt
 .vs
+/schema/schema/obj/Release/net10.0-windows7.0
+/schema/schema/obj/project.nuget.cache
+/schema/schema/obj/schema.csproj.nuget.g.props
+/schema/schema/obj/schema.csproj.nuget.dgspec.json
