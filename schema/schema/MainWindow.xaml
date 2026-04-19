@@ -15,14 +15,14 @@
         <ListBox x:Name="listbox1" Margin="7,86,0,10" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="#FF6E92AD" HorizontalAlignment="Left" Width="783" Grid.ColumnSpan="3" Padding="0,5,0,5"/>
         <Button x:Name="BTN_back" Content="Back" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="25" Width="49" Click="Back_click" Background="#FF4FC72F"/>
         <Button x:Name="BTN_refresh" Content="Refresh" HorizontalAlignment="Left" Margin="64,49,0,0" VerticalAlignment="Top" Height="25" Width="50" Click="Refresh_click" Background="#FF2F6ED4"/>
-        <Rectangle HorizontalAlignment="Left" Height="27" Margin="60,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="248" Grid.Column="2"/>
+        <Rectangle HorizontalAlignment="Left" Height="27" Margin="60,8,0,0" Stroke="Black" VerticalAlignment="Top" Width="223" Grid.Column="2"/>
         <Label Content="Status: " HorizontalAlignment="Left" Margin="60,9,0,0" VerticalAlignment="Top" Height="26" Width="54" Foreground="Black" Grid.Column="2"/>
-        <Label x:Name="LB_status" Content="Ready" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top" Width="199" Background="{x:Null}" Foreground="#FF79FF7C" FontSize="14" Grid.Column="2"/>
-        <Button Content="Downloaded files" HorizontalAlignment="Left" Margin="177,44,0,0" VerticalAlignment="Top" Height="25" Width="106" Click="Open_downloaded_click" Background="#FFD06F52" Grid.Column="2"/>
+        <Label x:Name="LB_status" Content="Ready" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top" Width="174" Background="{x:Null}" Foreground="#FF79FF7C" FontSize="14" Grid.Column="2"/>
+        <Button Content="Downloaded files" HorizontalAlignment="Left" Margin="133,44,0,0" VerticalAlignment="Top" Height="25" Width="106" Click="Open_downloaded_click" Background="#FFD06F52" Grid.Column="2"/>
         <Label Content="Collection and app by KiKiHUN" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF1700BF" FontSize="14" RenderTransformOrigin="0.505,0.526" Grid.ColumnSpan="2"/>
-        <Button Content="Upload" HorizontalAlignment="Left" Margin="111,44,0,0" VerticalAlignment="Top" Height="25" Width="61" Click="Upload_click" Background="#FFC94DD0" Grid.Column="2"/>
-        <Button Grid.Column="2" Content="!?" HorizontalAlignment="Left" Height="25" Margin="288,44,0,0" VerticalAlignment="Top" Width="20" Background="#FFFDFF00" Click="Info_click"/>
-        <Image Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="76,17,0,0" VerticalAlignment="Top" Width="14" Source="/25231.png" MouseLeftButtonUp="Github_click"/>
+        <Button Content="Upload" HorizontalAlignment="Left" Margin="247,44,0,0" VerticalAlignment="Top" Height="25" Width="61" Click="Upload_click" Background="#FFC94DD0" Grid.Column="2"/>
+        <Button Grid.Column="2" Content="!?" HorizontalAlignment="Left" Height="25" Margin="288,9,0,0" VerticalAlignment="Top" Width="20" Background="#FFFDFF00" Click="Info_click"/>
+        <Image Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="76,17,0,0" VerticalAlignment="Top" Width="14" Source="/25231.png" MouseLeftButtonUp="Github_click" Cursor="Hand"/>
         <Button x:Name="BTN_home" Content="Home" HorizontalAlignment="Left" Margin="119,49,0,0" VerticalAlignment="Top" Height="25" Width="50" Click="Home_click" Background="#FF2F6ED4" Grid.ColumnSpan="2"/>
 
         <Canvas x:Name="CV_search" Grid.Column="1" Margin="131,9,272,478" Grid.ColumnSpan="2">
@@ -32,6 +32,7 @@
             <Button x:Name="BTN_Search_clear" Content="Clear" Canvas.Left="153" Canvas.Top="5" Height="26" Width="44" Background="#FFD86122" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Search_clear_click"/>
             <Border BorderBrush="Black" BorderThickness="1" Height="72" Width="256" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Canvas>
+        <Button Content="Set Folder" HorizontalAlignment="Left" Margin="60,44,0,0" VerticalAlignment="Top" Height="25" Width="61" Click="Set_Download_Folder_click" Background="#FFD06F52" Grid.Column="2"/>
 
 
 

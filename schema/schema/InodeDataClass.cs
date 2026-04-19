@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace schema
 {
-    internal class datas
+    internal class InodeDataClass
     {
-        private IEnumerable<INode> nodes;
-        private IEnumerable<INode> Searchednodes;
+        private readonly IEnumerable<INode> nodes;
+        private IEnumerable<INode>? Searchednodes;
         public bool IsNulll()
         {
             if (nodes == null)
@@ -22,15 +22,16 @@ namespace schema
                 return false;
             }
         }
-        public datas(IEnumerable<INode> nodes)
+        public InodeDataClass(IEnumerable<INode> nodes)
         {
             this.nodes = nodes;
+            Searchednodes = null;
         }
-        public INode getRoot()
+        public INode GetRoot()
         {
             return nodes.Single(x => x.Type == NodeType.Root);
         }
-        public IEnumerable<INode> getnodes(bool filtered=false)
+        public IEnumerable<INode> Getnodes(bool filtered = false)
         {
             if (!filtered)
             {
@@ -38,13 +39,17 @@ namespace schema
             }
             else
             {
-                return Searchednodes;
+                if (Searchednodes == null)
+                {
+                    
+                }
+                return new List<INode>();
             }
             
         }
        
 
-        public INode getParentParent(INode node)//back one folder
+        public INode GetParentParent(INode node)//back one folder
         {
             INode parent = nodes.Single(x => x.Id == node.ParentId);
             return parent;
@@ -63,7 +68,7 @@ namespace schema
         }
         public int SearchFor(string keyword)
         {
-            Searchednodes = nodes.Where(x => x.Type==NodeType.File).Where(x=>x.Name.ToLower().Contains(keyword.ToLower()));
+            Searchednodes = nodes.Where(x => x.Type == NodeType.File).Where(x => x.Name.Contains(keyword, StringComparison.CurrentCultureIgnoreCase));
             return Searchednodes.Count();
         }
     }

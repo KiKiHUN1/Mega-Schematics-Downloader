@@ -1,4 +1,5 @@
 using CG.Web.MegaApiClient;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,16 +18,20 @@ namespace schema
     /// </summary>
     public partial class MainWindow : Window
     {
-        double version= 1.5;
-        MegaApiClient client = new MegaApiClient();
-        datas database = null;
-        INode currentNode = null;
+        private readonly double version = 1.5;
+        private readonly MegaApiClient client = new MegaApiClient();
+        InodeDataClass? database = null;
+        INode? currentNode = null;
+        bool IsCutomPathSelected = false;
+        string CustomDownloadPath = "";
 
         public MainWindow()
         {
             InitializeComponent();
-            checkversionAsync();
-            
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            CheckversionAsync();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
             CV_search.Visibility = Visibility.Hidden;
             BTN_back.IsEnabled = false;
             BTN_refresh.IsEnabled = false;
@@ -34,13 +39,13 @@ namespace schema
             BTN_Search_clear.Visibility = Visibility.Hidden;
             BTN_search.Visibility = Visibility.Hidden;
         }
-        async Task checkversionAsync()
+        async Task CheckversionAsync()
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient httpclient = new HttpClient())
             {
                 try
                 {
-                    string server_version = await client.GetStringAsync("https://raw.githubusercontent.com/KiKiHUN1/Mega-Schematics-Downloader/main/schema/schema/ver.txt");
+                    string server_version = await httpclient.GetStringAsync("https://raw.githubusercontent.com/KiKiHUN1/Mega-Schematics-Downloader/main/schema/schema/ver.txt");
                     server_version = server_version.Substring(0, server_version.Length - 1);
                     double server_version2 = double.Parse(server_version, CultureInfo.InvariantCulture);
                     if (server_version2 > version)
@@ -69,12 +74,12 @@ namespace schema
             }
 
         }
-        void loadlink()
+        void Loadlink()
         {
             BTN_home.IsEnabled = false;
             Uri folderLink = new Uri("https://mega.nz/folder/EWFAzKIT#uUGjAxvc8TlpnQVLUHl5wg");
             LB_status.Content = "Fetching data...";
-            IEnumerable<INode> nodes = null;
+            IEnumerable<INode>? nodes = null;
             try
             {
                 nodes = client.GetNodesFromLink(folderLink);
@@ -91,14 +96,20 @@ namespace schema
                 LB_status.Content = "Unknown error";
             }
 
-            
-            database = null;
-            GC.Collect();
-            database = new datas(nodes);
-            currentNode = database.getRoot();
-            Main();
+            if (nodes != null)
+            {
+                database = null;
+                GC.Collect();
+                database = new InodeDataClass(nodes);
+                currentNode = database.GetRoot();
+                Main();
+            }
+            else
+            {
+                LB_status.Content = "Node is null";
+            }
         }
-        bool isFileDownloaded(string path)
+        private static bool IsFileDownloaded(string path)
         {
             if (!File.Exists(path))
             {
@@ -107,67 +118,78 @@ namespace schema
             return true;
         }
 
-        void listAdd(string name, INode item = null)
+        void ListAdd(string name, INode item)
         {
-            LB_status.Content = "Found: " + name;
-            listbox1.Width = mainwindow.Width - 30;
-            listbox1.SelectionMode = SelectionMode.Single;
-            Grid grid = new Grid();
-            ColumnDefinition colDef1 = new ColumnDefinition();
-            ColumnDefinition colDef2 = new ColumnDefinition();
-
-            grid.ColumnDefinitions.Add(colDef1);
-            grid.ColumnDefinitions.Add(colDef2);
-
-            RowDefinition rowDef1 = new RowDefinition();
-            grid.RowDefinitions.Add(rowDef1);
-
-            TextBlock text = new TextBlock();
-            text.Text = name;
-            text.FontSize = 12;
-            text.Width = listbox1.Width - listbox1.Width / 4;
-            Button button = new Button();
-
-
-            System.Drawing.Color myColor;
-            if (item.Type == NodeType.Directory)
+            if(database != null)
             {
-                button.Content = "Enter";
-                myColor = System.Drawing.ColorTranslator.FromHtml("#FF4088FB");
-                SubSCribeToEvent(2, button, item,null);
-            }
-            else
-            {
-                string parents = database.GetParents(item);
-                if (isFileDownloaded(System.IO.Path.Combine(parents, item.Name)))
+                LB_status.Content = "Found: " + name;
+                listbox1.Width = mainwindow.Width - 30;
+                listbox1.SelectionMode = SelectionMode.Single;
+                Grid grid = new Grid();
+                ColumnDefinition colDef1 = new ColumnDefinition();
+                ColumnDefinition colDef2 = new ColumnDefinition();
+
+                grid.ColumnDefinitions.Add(colDef1);
+                grid.ColumnDefinitions.Add(colDef2);
+
+                RowDefinition rowDef1 = new RowDefinition();
+                grid.RowDefinitions.Add(rowDef1);
+
+                TextBlock text = new TextBlock
                 {
-                    button.Content = "Show";
-                    myColor = System.Drawing.ColorTranslator.FromHtml("#A82743");
-                    SubSCribeToEvent(0, button,null,parents );
+                    Text = name,
+                    FontSize = 12,
+                    Width = listbox1.Width - listbox1.Width / 4
+                };
+                Button button = new Button();
+
+
+                System.Drawing.Color myColor;
+                if (item.Type == NodeType.Directory)
+                {
+                    button.Content = "Enter";
+                    myColor = System.Drawing.ColorTranslator.FromHtml("#FF4088FB");
+                    SubSCribeToEvent(2, button, item,null);
                 }
                 else
                 {
-                    button.Content = "Download";
-                    myColor = System.Drawing.ColorTranslator.FromHtml("#FF4FC72F");
-                    SubSCribeToEvent(1,button,item,null);
-                }
+                    string path = "";
+                    if (IsCutomPathSelected)
+                    {
+                        path = CustomDownloadPath;
+                    }
+                    path += database.GetParents(item);
+                    path = System.IO.Path.Combine(path, item.Name);
+                    if (IsFileDownloaded(path))
+                    {
+                        button.Content = "Show";
+                        myColor = System.Drawing.ColorTranslator.FromHtml("#A82743");
+                        SubSCribeToEvent(0, button,null, path);
+                    }
+                    else
+                    {
+                        button.Content = "Download";
+                        myColor = System.Drawing.ColorTranslator.FromHtml("#FF4FC72F");
+                        SubSCribeToEvent(1,button,item,null);
+                    }
 
               
-            }
-            SolidColorBrush brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(myColor.A, myColor.R, myColor.G, myColor.B));
-            button.Background = brush;
-            button.FontSize = 12;
-            button.Width = listbox1.Width / 4.0 - 30.0;
+                }
+                SolidColorBrush brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(myColor.A, myColor.R, myColor.G, myColor.B));
+                button.Background = brush;
+                button.FontSize = 12;
+                button.Width = listbox1.Width / 4.0 - 30.0;
            
-            Grid.SetColumn(text, 0);
-            Grid.SetRow(text, 0);
-            grid.Children.Add(text);
+                Grid.SetColumn(text, 0);
+                Grid.SetRow(text, 0);
+                grid.Children.Add(text);
 
-            Grid.SetColumn(button, 1);
-            Grid.SetRow(button, 0);
-            grid.Children.Add(button);
+                Grid.SetColumn(button, 1);
+                Grid.SetRow(button, 0);
+                grid.Children.Add(button);
 
-            listbox1.Items.Add(grid);
+                listbox1.Items.Add(grid);
+            }
         }
 
 
@@ -176,15 +198,15 @@ namespace schema
         {
             CV_search.Visibility = Visibility.Hidden;
             LB_status.Content = "Filling up the list";
-            if (!database.IsNulll())
+            if ((database != null) && (!database.IsNulll()) && (currentNode !=null))
             {
 
                 listbox1.Items.Clear();
-                foreach (INode node in database.getnodes(filtered))
+                foreach (INode node in database.Getnodes(filtered))
                 {
                     if (filtered||node.ParentId == currentNode.Id)
                     {
-                        listAdd(node.Name, node);
+                        ListAdd(node.Name, node);
                     }
 
                     /* string parents = GetParents(node, nodes);
@@ -218,87 +240,100 @@ namespace schema
             }
 
         }
-        void Show_click(object sender, RoutedEventArgs e, string parents)
+        void Show_click(string? path)
         {
-            string path = Directory.GetCurrentDirectory();
-            path += "\\" + parents;
-            Process.Start("explorer.exe", @path);
-        }
-        void Download_click(object sender, RoutedEventArgs e, INode item, Button button)
-        {
-            if (item.Type != NodeType.Directory)
-            { 
-                string parents = database.GetParents(item);
-                Directory.CreateDirectory(parents);
-              
+            if (path != null)
+            {
+                string argument = "/select, \"" + @path + "\"";
 
-                if (!isFileDownloaded(System.IO.Path.Combine(parents, item.Name)))
-                {
-                    LB_status.Content = "Downloading: " + item.Name;
-                    try
-                    {
-                        client.DownloadFile(item, System.IO.Path.Combine(parents, item.Name));
-                        LB_status.Content = "Downloaded";
-                        
-                       
-                    }
-                    catch (ApiException)
-                    {
-                        LB_status.Content = "Api error";
-                    }
-                    catch (DownloadException)
-                    {
-                        LB_status.Content = "Download Error";
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Unknown error: " + ex.ToString());
-                    }
-                }
-                //string path = Directory.GetCurrentDirectory();
-                //path += "\\" + parents;
+                System.Diagnostics.Process.Start("explorer.exe", argument);
                 //Process.Start("explorer.exe", @path);
             }
-            Main();
         }
-        void Enter_click(object sender, RoutedEventArgs e, INode item)
+        void Download_click(INode? item, Button button)
         {
-            currentNode = item;
-            if (item.Type == NodeType.Directory)
+            if ((item != null) && (database!=null))
             {
+                if (item.Type != NodeType.Directory)
+                {
+                    string parents = "";
+                    if (IsCutomPathSelected)
+                    {
+                        parents = CustomDownloadPath;
+                    }
+                    parents += database.GetParents(item);
+                    Directory.CreateDirectory(parents);
+
+
+                    if (!IsFileDownloaded(System.IO.Path.Combine(parents, item.Name)))
+                    {
+                        LB_status.Content = "Downloading: " + item.Name;
+                        try
+                        {
+                            client.DownloadFile(item, System.IO.Path.Combine(parents, item.Name));
+                            LB_status.Content = "Downloaded";
+                        }
+                        catch (ApiException)
+                        {
+                            LB_status.Content = "Api error";
+                        }
+                        catch (DownloadException)
+                        {
+                            LB_status.Content = "Download Error";
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Unknown error: " + ex.ToString());
+                        }
+                    }
+                    //string path = Directory.GetCurrentDirectory();
+                    //path += "\\" + parents;
+                    //Process.Start("explorer.exe", @path);
+                }
                 Main();
             }
         }
+        void Enter_click( INode? item)
+        {
+            if (item != null)
+            {
+                currentNode = item;
+                if (item.Type == NodeType.Directory)
+                {
+                    Main();
+                }
+            }
+        }
 
 
-        void SubSCribeToEvent(byte status, Button button, INode item=null, string parents=null)
+        void SubSCribeToEvent(byte status, Button button, INode? item=null, string? path=null)
         {
             switch (status)
             {
                 case 0:
-                     button.Click += (sender, EventArgs) => { Show_click(sender, EventArgs, parents); };
+                     button.Click += (sender, EventArgs) => { Show_click(path); };
                     break;
                 case 1:
-                    button.Click += (sender, EventArgs) => { Download_click(sender, EventArgs,item,button); };
+                    button.Click += (sender, EventArgs) => { Download_click(item,button); };
                     break;
                 case 2:
-                    button.Click += (sender, EventArgs) => { Enter_click(sender, EventArgs, item); };
+                    button.Click += (sender, EventArgs) => { Enter_click(item); };
                     break;
             }
         }
 
-        void DeSubScribeFromEvent(byte status, Button button, INode item, string parents = null)
+        void DeSubScribeFromEvent(byte status, Button button, INode? item, string? path = null)
         {
             switch (status)
             {
                 case 0:
-                    button.Click -= (sender, EventArgs) => { Show_click(sender, EventArgs, parents); };
+                    button.Click -= (sender, EventArgs) => { Show_click(path); };
                     break;
                 case 1:
-                    button.Click -= (sender, EventArgs) => { Download_click(sender, EventArgs, item, button); };
+                    button.Click -= (sender, EventArgs) => { Download_click(item, button); };
                     break;
                 case 2:
-                    button.Click -= (sender, EventArgs) => { Enter_click(sender, EventArgs, item); };
+                    button.Click -= (sender, EventArgs) => { Enter_click(item); };
                     break;
             }
         }
@@ -308,20 +343,30 @@ namespace schema
         private void Refresh_click(object sender, RoutedEventArgs e)
         {
             LB_status.Content = "Reloading local storage...";
-            loadlink();
+            Loadlink();
         }
 
         private void Back_click(object sender, RoutedEventArgs e)
         {
-            LB_status.Content = "Back one folder";
-            currentNode = database.getParentParent(currentNode);
-            Main();
+            if ((currentNode != null) && (database!=null))
+            {
+                LB_status.Content = "Back one folder";
+                currentNode = database.GetParentParent(currentNode);
+                Main();
+            }
         }
 
         private void Open_downloaded_click(object sender, RoutedEventArgs e)
         {
-            string path = Directory.GetCurrentDirectory();
-            path += "\\schema+boarview";
+            string path;
+            if (IsCutomPathSelected)
+            {
+                path = CustomDownloadPath;
+            }
+            else
+            {
+                path = Directory.GetCurrentDirectory()+ "\\schema+boarview";
+            }
             if (Directory.Exists(path))
             {
                 LB_status.Content = "Opening file explorer";
@@ -332,7 +377,6 @@ namespace schema
             {
                 LB_status.Content = "No local folder found";
             }
-
         }
 
         private void Upload_click(object sender, RoutedEventArgs e)
@@ -352,8 +396,11 @@ namespace schema
 
         private void Home_click(object sender, RoutedEventArgs e)
         {
-            currentNode=database.getRoot();
-            Main();
+            if (database != null)
+            {
+                currentNode = database.GetRoot();
+                Main();
+            }
         }
 
         private void Search_clear_click(object sender, RoutedEventArgs e)
@@ -366,19 +413,22 @@ namespace schema
 
         private void BTN_search_Click(object sender, RoutedEventArgs e)
         {
-            BTN_refresh.IsEnabled= false;
-            BTN_back.IsEnabled=false;
-            BTN_home.IsEnabled=false;
-            int count=database.SearchFor(TB_search.Text);
-            if (count > 0)
+            if (database != null)
             {
-                LB_status.Content = count + " items found";
-                Main(true);
-            }
-            else
-            {
-                LB_status.Content = "no items found";
-                listbox1.Items.Clear();
+                BTN_refresh.IsEnabled = false;
+                BTN_back.IsEnabled = false;
+                BTN_home.IsEnabled = false;
+                int count = database.SearchFor(TB_search.Text);
+                if (count > 0)
+                {
+                    LB_status.Content = count + " items found";
+                    Main(true);
+                }
+                else
+                {
+                    LB_status.Content = "no items found";
+                    listbox1.Items.Clear();
+                }
             }
         }
 
@@ -393,6 +443,20 @@ namespace schema
             {
                 BTN_Search_clear.Visibility = Visibility.Hidden;
                 BTN_search.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Set_Download_Folder_click(object sender, RoutedEventArgs e)
+        {
+            OpenFolderDialog diag = new OpenFolderDialog
+            {
+                Multiselect = false
+            };
+            bool? diagok = diag.ShowDialog();
+            if ((null != diagok) && (diagok == true))
+            {
+                IsCutomPathSelected = true;
+                CustomDownloadPath = diag.FolderName+"\\";
             }
         }
     }
