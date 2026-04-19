@@ -10,3 +10,7 @@ MEGA-RECOVERYKEY.txt
 /schema/schema/obj/project.nuget.cache
 /schema/schema/obj/schema.csproj.nuget.g.props
 /schema/schema/obj/schema.csproj.nuget.dgspec.json
+/schema/schema/obj/publish/win-x64/project.nuget.cache
+/schema/schema/obj/publish/win-x64/project.assets.json
+/schema/schema/obj/publish/win-x64/schema.csproj.nuget.dgspec.json
+/schema/schema/obj/publish/win-x64/schema.csproj.nuget.g.props
