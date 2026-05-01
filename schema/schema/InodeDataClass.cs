@@ -39,11 +39,14 @@ namespace schema
             }
             else
             {
-                if (Searchednodes == null)
+                if (Searchednodes != null)
                 {
-                    
+                    return Searchednodes;
                 }
-                return new List<INode>();
+                else
+                {
+                    return new List<INode>();
+                }
             }
             
         }

@@ -24,6 +24,7 @@ namespace schema
         INode? currentNode = null;
         bool IsCutomPathSelected = false;
         string CustomDownloadPath = "";
+        bool FilterList = false;
 
         public MainWindow()
         {
@@ -83,7 +84,7 @@ namespace schema
             try
             {
                 nodes = client.GetNodesFromLink(folderLink);
-                LB_status.Content = "Database loaded";
+                LB_status.Content = "Ready";
             }
             catch (ApiException)
             {
@@ -102,7 +103,8 @@ namespace schema
                 GC.Collect();
                 database = new InodeDataClass(nodes);
                 currentNode = database.GetRoot();
-                Main();
+                FilterList = false;
+                Main(FilterList);
             }
             else
             {
@@ -122,7 +124,6 @@ namespace schema
         {
             if(database != null)
             {
-                LB_status.Content = "Found: " + name;
                 listbox1.Width = mainwindow.Width - 30;
                 listbox1.SelectionMode = SelectionMode.Single;
                 Grid grid = new Grid();
@@ -197,14 +198,13 @@ namespace schema
         void Main(bool filtered=false)
         {
             CV_search.Visibility = Visibility.Hidden;
-            LB_status.Content = "Filling up the list";
             if ((database != null) && (!database.IsNulll()) && (currentNode !=null))
             {
 
                 listbox1.Items.Clear();
                 foreach (INode node in database.Getnodes(filtered))
                 {
-                    if (filtered||node.ParentId == currentNode.Id)
+                    if (filtered ||node.ParentId == currentNode.Id)
                     {
                         ListAdd(node.Name, node);
                     }
@@ -228,7 +228,6 @@ namespace schema
                 }
                
                 // client.Logout();
-                LB_status.Content = "Ready";
                 CV_search.Visibility= Visibility.Visible;
                 
             }
@@ -290,7 +289,7 @@ namespace schema
                     //path += "\\" + parents;
                     //Process.Start("explorer.exe", @path);
                 }
-                Main();
+                Main(FilterList);
             }
         }
         void Enter_click( INode? item)
@@ -300,7 +299,8 @@ namespace schema
                 currentNode = item;
                 if (item.Type == NodeType.Directory)
                 {
-                    Main();
+                    FilterList = false;
+                    Main(FilterList);
                 }
             }
         }
@@ -342,7 +342,6 @@ namespace schema
 
         private void Refresh_click(object sender, RoutedEventArgs e)
         {
-            LB_status.Content = "Reloading local storage...";
             Loadlink();
         }
 
@@ -350,9 +349,9 @@ namespace schema
         {
             if ((currentNode != null) && (database!=null))
             {
-                LB_status.Content = "Back one folder";
                 currentNode = database.GetParentParent(currentNode);
-                Main();
+                FilterList = false;
+                Main(FilterList);
             }
         }
 
@@ -399,16 +398,18 @@ namespace schema
             if (database != null)
             {
                 currentNode = database.GetRoot();
-                Main();
+                FilterList = false;
+                Main(FilterList);
             }
         }
 
         private void Search_clear_click(object sender, RoutedEventArgs e)
         {
-            LB_status.Content = "Reloading local storage...";
             TB_search.Clear();
             BTN_refresh.IsEnabled = true;
-            Main();
+            FilterList = false;
+            Main(FilterList);
+            LB_status.Content = "Filter cleared";
         }
 
         private void BTN_search_Click(object sender, RoutedEventArgs e)
@@ -422,7 +423,8 @@ namespace schema
                 if (count > 0)
                 {
                     LB_status.Content = count + " items found";
-                    Main(true);
+                    FilterList = true;
+                    Main(FilterList);
                 }
                 else
                 {
@@ -457,6 +459,11 @@ namespace schema
             {
                 IsCutomPathSelected = true;
                 CustomDownloadPath = diag.FolderName+"\\";
+                LB_status.Content = "Folder set";
+            }
+            else
+            {
+                LB_status.Content = "Folder NOT set";
             }
         }
     }

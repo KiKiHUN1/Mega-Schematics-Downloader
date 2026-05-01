@@ -1,16 +1,7 @@
 
 schema/.vs
-schema/schema/obj/Debug/
-schema/.vs/schema/FileContentIndex/99583e6a-3ee0-4c0e-8306-8c4e06fb9d31.vsidx
-schema/.vs/schema/v17/.suo
 schema/schema/bin
-MEGA-RECOVERYKEY.txt
 .vs
-/schema/schema/obj/Release/net10.0-windows7.0
-/schema/schema/obj/project.nuget.cache
-/schema/schema/obj/schema.csproj.nuget.g.props
-/schema/schema/obj/schema.csproj.nuget.dgspec.json
-/schema/schema/obj/publish/win-x64/project.nuget.cache
-/schema/schema/obj/publish/win-x64/project.assets.json
-/schema/schema/obj/publish/win-x64/schema.csproj.nuget.dgspec.json
-/schema/schema/obj/publish/win-x64/schema.csproj.nuget.g.props
+/schema/schema/obj
+
+/schema/schema/Properties/PublishProfiles/FolderProfile.pubxml.user
